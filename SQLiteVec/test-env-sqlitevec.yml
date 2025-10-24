@@ -5,5 +5,6 @@ channels:
 dependencies:
   - python==3.12
   - pip:                            # Packages installed from PyPI
-    - sqlite-vec
-    - langchain-community
+    - sqlite-vec==0.1.6
+    - langchain-community==0.4
+    - sentence-transformers==5.1.2
