@@ -8,3 +8,4 @@ dependencies:
     - docling==2.58.0
     - pandas==2.3.3
     - fastparquet==2024.11.0
+    - datasets==4.3.0

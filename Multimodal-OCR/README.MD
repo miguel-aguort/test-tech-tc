@@ -1,10 +1,10 @@
-### Quick guidelines RAG GUI PoC
+### Quick guidelines Multimodal OCR PoC
 
 The code comes from **https://docling-project.github.io/docling/examples/export_multimodal/**
 
 First you need to install conda environment using: 
 ```console
-$cd OCR/
+$cd Multimodal-OCR/
 $conda env create -f test-env-multimodal-ocr.yml
 ```
 
