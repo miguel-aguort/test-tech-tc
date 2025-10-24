@@ -1,0 +1,9 @@
+name: test_env_sqlitevec                         # env was made with --prefix
+channels:
+  - conda-forge                     # added a third party channel
+  - defaults
+dependencies:
+  - python==3.12
+  - pip:                            # Packages installed from PyPI
+    - sqlite-vec
+    - langchain-community
