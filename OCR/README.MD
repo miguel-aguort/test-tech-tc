@@ -4,11 +4,12 @@ The code comes from **https://github.com/docling-project/docling/blob/main/READM
 
 First you need to install conda environment using: 
 ```console
-$cd RAG/
-$conda env create -f test-env-rag.yml
+$cd OCR/
+$conda env create -f test-env-ocr.yml
 ```
 
 Then, execute the code with:
 ```console
+$conda avtivate test_env_ocr
 $python app.py
 ```

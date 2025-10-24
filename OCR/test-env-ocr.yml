@@ -1,4 +1,4 @@
-name: test_env_rag                         # env was made with --prefix
+name: test_env_ocr                         # env was made with --prefix
 channels:
   - conda-forge                     # added a third party channel
   - defaults
