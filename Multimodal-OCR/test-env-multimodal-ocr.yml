@@ -1,0 +1,10 @@
+name: test_env_multimodal_ocr                         # env was made with --prefix
+channels:
+  - conda-forge                     # added a third party channel
+  - defaults
+dependencies:
+  - python==3.12
+  - pip:                            # Packages installed from PyPI
+    - docling==2.58.0
+    - pandas==2.3.3
+    - fastparquet==2024.11.0
