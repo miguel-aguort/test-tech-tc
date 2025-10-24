@@ -1,4 +1,4 @@
-### Quick guidelines RAG GUI PoC
+### Quick guidelines OCR PoC
 
 The code comes from **https://github.com/docling-project/docling/blob/main/README.md**
 
