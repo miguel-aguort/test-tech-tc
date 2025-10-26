@@ -3,6 +3,8 @@ import datetime
 import logging
 import time
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
 import pandas as pd
 
@@ -13,16 +15,21 @@ from docling.utils.export import generate_multimodal_pages
 from docling.utils.utils import create_hash
 
 _log = logging.getLogger(__name__)
+load_dotenv()
 
 IMAGE_RESOLUTION_SCALE = 2.0
 
+LOG_LEVEL = os.getenv('LOG_LEVEL')
+level = getattr(logging, LOG_LEVEL.upper(), logging.INFO)
+PDF_FILE = os.getenv('PDF_FILE')
+PATH_DATA = os.getenv('PATH_DATA')
 
-def main():
-    logging.basicConfig(level=logging.INFO)
+def multimodal_ocr():
+    logging.basicConfig(level=level)
 
-    data_folder = Path(__file__).parent / "../data"
-    input_doc_path = data_folder / "image-based-pdf-sample.pdf"
-    output_dir = Path("../data/scratch")
+    data_folder = Path(__file__).parent / PATH_DATA
+    input_doc_path = data_folder / PDF_FILE
+    output_dir = Path(data_folder / "scratch")
 
     # Keep page images so they can be exported to the multimodal rows.
     # Use PdfPipelineOptions.images_scale to control the render scale (1 ~ 72 DPI).
@@ -92,20 +99,14 @@ def main():
     )
 
     # This block demonstrates how the file can be opened with the HF datasets library
-    from datasets import Dataset
-    from PIL import Image
-    multimodal_df = pd.read_parquet(output_filename)
-    print(multimodal_df.head(10))
+    # from datasets import Dataset
+    # from PIL import Image
+    # multimodal_df = pd.read_parquet(output_filename)
+    # print(multimodal_df.head(10))
 
-    # Convert pandas DataFrame to Hugging Face Dataset and load bytes into image
-    dataset = Dataset.from_pandas(multimodal_df)
-    def transforms(examples):
-        examples["image"] = Image.frombytes('RGB', (examples["image.width"], examples["image.height"]), examples["image.bytes"], 'raw')
-        return examples
-    dataset = dataset.map(transforms)
-
-    print(dataset)
-
-
-if __name__ == "__main__":
-    main()
+    # # Convert pandas DataFrame to Hugging Face Dataset and load bytes into image
+    # dataset = Dataset.from_pandas(multimodal_df)
+    # def transforms(examples):
+    #     examples["image"] = Image.frombytes('RGB', (examples["image.width"], examples["image.height"]), examples["image.bytes"], 'raw')
+    #     return examples
+    # dataset = dataset.map(transforms)
