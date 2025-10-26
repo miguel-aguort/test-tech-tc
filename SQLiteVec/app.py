@@ -19,6 +19,9 @@ vector_store = SQLiteVec(
 )
 
 vector_store.add_texts(["Ketanji Brown Jackson is awesome", "foo", "bar"])
+vector_store.add_texts(["Carlos Jackson is perfect", "foo", "bar"])
+vector_store.add_texts(["Cristina Ramirez is smart", "foo", "bar"])
+vector_store.add_texts(["Octavio Perez is cute", "foo", "bar"])
 data = vector_store.similarity_search("Ketanji Brown Jackson", k=4)
 
 print(data)
