@@ -1,0 +1,10 @@
+name: test_env                         # env was made with --prefix
+channels:
+  - conda-forge                     # added a third party channel
+  - defaults
+dependencies:
+  - python==3.12
+  - pip:                            # Packages installed from PyPI
+    - sqlite-vec==0.1.6
+    - langchain-community==0.4.0
+    - sentence-transformers==5.1.2
