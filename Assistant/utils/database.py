@@ -14,6 +14,11 @@ from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling.utils.export import generate_multimodal_pages
 from docling.utils.utils import create_hash
 
+from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+from langchain_community.vectorstores import SQLiteVec
+import sqlite3
+import sqlite_vec
+
 _log = logging.getLogger(__name__)
 load_dotenv()
 
@@ -88,8 +93,8 @@ def multimodal_ocr():
 
     # Generate one parquet from all documents
     df_result = pd.json_normalize(rows)
-    now = datetime.datetime.now()
-    output_filename = output_dir / f"multimodal_{now:%Y-%m-%d_%H%M%S}.parquet"
+    # now = datetime.datetime.now()
+    output_filename = output_dir / f"multimodal-{PDF_FILE}.parquet"
     df_result.to_parquet(output_filename)
 
     end_time = time.time() - start_time
@@ -110,3 +115,25 @@ def multimodal_ocr():
     #     examples["image"] = Image.frombytes('RGB', (examples["image.width"], examples["image.height"]), examples["image.bytes"], 'raw')
     #     return examples
     # dataset = dataset.map(transforms)
+
+def init_db():
+    connection = sqlite3.connect(":memory:")
+    # Issues working in azure: 
+    connection.row_factory = sqlite3.Row
+    connection.enable_load_extension(True)
+    sqlite_vec.load(connection)
+
+    embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+
+    return SQLiteVec(
+        table="state_union",
+        db_file=":memory:",
+        embedding=embedding_function,
+        connection=connection
+    )
+
+def load_data():
+    data_folder = Path(__file__).parent / PATH_DATA
+    output_dir = Path(data_folder / "scratch")
+    path_to_file = output_dir / f"multimodal-{PDF_FILE}.parquet"
+    return pd.read_parquet(path_to_file)
