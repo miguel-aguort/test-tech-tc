@@ -15,4 +15,6 @@ dependencies:
     - langchain-community==0.4.0
     - sentence-transformers==5.1.2
 
-    - langgraph==0.0.30
+    - langgraph==1.0.1
+
+    - gradio==5.49.1
