@@ -122,7 +122,7 @@ def multimodal_ocr():
         _log.info(f"File {output_filename} already exist")
 
 def init_db():
-    connection = sqlite3.connect(":memory:")
+    connection = sqlite3.connect(":memory:", check_same_thread=False)
     # Issues working in azure: 
     connection.row_factory = sqlite3.Row
     connection.enable_load_extension(True)
