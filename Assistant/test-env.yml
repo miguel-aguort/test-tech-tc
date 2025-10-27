@@ -10,3 +10,7 @@ dependencies:
     - fastparquet==2024.11.0
     - datasets==4.3.0
     - python-dotenv==1.2.1
+
+    - sqlite-vec==0.1.6
+    - langchain-community==0.4.0
+    - sentence-transformers==5.1.2
