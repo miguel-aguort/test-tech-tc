@@ -3,6 +3,8 @@ from langchain_community.embeddings.sentence_transformer import SentenceTransfor
 from langchain_community.vectorstores import SQLiteVec
 import sqlite3
 import sqlite_vec
+import time
+import gradio as gr
 
 def node1(str, vector_db):
   docs = vector_db.similarity_search(str, k=2)
@@ -23,6 +25,14 @@ def init_graph(vector_db):
   graph.add_edge("node_2", END)
   return graph.compile()
 
+def init_gradio(app):
+   return gr.ChatInterface(
+                app,
+                type="messages",
+                flagging_mode="manual",
+                flagging_options=["Like", "Spam", "Inappropriate", "Other"],
+                save_history=True,
+              )
 
 # input_data = "hello world!"
 # if __name__ == "__main__":
