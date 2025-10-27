@@ -5,4 +5,4 @@ channels:
 dependencies:
   - python==3.12
   - pip:                            # Packages installed from PyPI
-    - langgraph==0.0.30
+    - langgraph==1.0.1

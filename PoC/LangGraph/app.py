@@ -1,22 +1,18 @@
 from utils.components import node1, node2
-from langgraph.graph import Graph
+from langgraph.graph import StateGraph, START, END
 
-# Create a new Graph
-workflow = Graph()
-
+graph = StateGraph(str)
 # Add the nodes
-workflow.add_node("node_1", node1)
-workflow.add_node("node_2", node2)
+graph.add_node("node_1", node1)
+graph.add_node("node_2", node2)
 
-# Add the Edges
-workflow.add_edge("node_1", "node_2")
-workflow.set_entry_point("node_1")
-workflow.set_finish_point("node_2")
+graph.add_edge(START, "node_1")
+graph.add_edge("node_1", "node_2")
+graph.add_edge("node_2", END)
+graph = graph.compile()
 
-#Run the workflow
-app = workflow.compile()
 
 input_data = "hello world!"
 if __name__ == "__main__":
-    response = app.invoke(input=input_data)
+    response = graph.invoke(input_data)
     print(response)
