@@ -19,8 +19,13 @@ La parte técnica ha quedado definida pero hay que darle la importancia que tien
 
 ![Esquema solución propuesta](/images/schema.png)
 
+*Figura 1 – Esquema solución propuesta.*
 
-![Esquema solución propuesta en Azure con más tiempo y recursos](/images/schema.png)
+
+![Esquema solución propuesta en Azure con más tiempo y recursos](/images/schema-prod.png)
+
+*Figura 2 – Esquema solución propuesta en Azure con más tiempo y recursos*
+
 
 ### Apartado 2: Dar respuesta a los siguientes puntos de forma teórica, sin necesidad de desarrollarlos, que guardan relación con las tecnologías utilizadas en el primer apartado:
 
@@ -53,6 +58,7 @@ El desempeño del RAG se mide primero desde un punto de vista técnico, viendo l
 Todo lo anterior aplica para una herramienta de IA Generativa. Para mi la evaluación más valiosa sería la de las personas que van a emplear el sistema compartiendo pequeños sets o publicando demos o MVPs para que se conozca y se controles expectativas. 
 Las APIs se protegerían ante ataques como cualquier API. Las respuestas de los modelos (para evitar terminos malsonantes u ofensivos) se controlan con la propia herramienta de AI seafty que tiene Azure. Es importante también medir parte latencias, disponibilidad y demas temnas de infraestructura. Muy importante llevar una trazabilidad perfecta de id de usuario, prompt de entrada, respuesta, hora... Con esta información se puede mejorar el sistema y monitorear todo el comportamiento.
 
+
 ### Apartado 3 (Opcional): Servicio local para detección de objetos. El objetivo es disponer de un servicio que tenga como entrada una imagen y que como salida proporcione un JSON con detecciones de coches y personas. Se han de cumplir los siguientes puntos:
 
 - **No hay necesidad de entrenar un modelo. Se pueden usar preentrenados.**
@@ -66,6 +72,7 @@ Respuesta:
 3. Seleccionar herramientas (en principio usario KServe para levantar api y exponer modelo).
 4. Desarrollar el Dockerfile correspondiente (y YAML file para desplegar en Kubernetes si se tiene infra) iniciando el script y  exponiendo el servicio al exterior (abriendo puerto).
 5. Levantarlo y lanzar requests hasta que funcione, que nunca es a la primera. Habría que iterar.
+
 
 ### Además, plantear cuales serían los pasos necesarios para entrenar un modelo de detección con categorías no existentes en los modelos preentrenados. Los puntos en los que centrar la explicación son:
 
